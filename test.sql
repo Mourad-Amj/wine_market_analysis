@@ -1,0 +1,2 @@
+SELECT user_structure_count
+FROM wines
