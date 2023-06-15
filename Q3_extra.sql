@@ -1,4 +1,4 @@
-SELECT DISTINCT  regions.name AS "region"
+SELECT  regions.name AS "region"
 FROM wines
 JOIN wineries
     ON wines.winery_id = wineries.id

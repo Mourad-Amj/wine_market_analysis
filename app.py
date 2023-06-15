@@ -89,19 +89,93 @@ st.markdown("<hr>", unsafe_allow_html=True)
 #
 #
 st.subheader('The best winery')
-columns = st.columns(3)
+columns = st.columns(2)
 query3 = load_sql_file('Q3.sql')
 result3 = pd.read_sql_query(query3, conn)
 columns[0].subheader('')
 columns[0].write(result3)
 
 columns[1].markdown("""
+The award goes to **Quintarelli Giuseppe**.
+This esteemed **Italian** winery has consistently produced a large number of wines that have been highly rated, with an average score of **4.7**.
 
-dqsqdq
+This indicates that their wines are not only popular among wine enthusiasts but are also of exceptional quality.
+
+Furthermore, these wines have also received an impressive average number of **4181** ratings, showing the wide reach and popularity among the consumers.
 
 """)
+#------------------------------------------------------------------------------------------------------------------------------------------#
+# Adding separation line
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<hr>", unsafe_allow_html=True)
+#------------------------------------------------------------------------------------------------------------------------------------------#
+#
+st.subheader('Aroma')
+columns = st.columns(2)
+query4 = load_sql_file('Q4.sql')
+result4 = pd.read_sql_query(query4, conn)
+columns[0].subheader('')
+columns[0].write(result4)
 
-query3e = load_sql_file('Q3_extra.sql')
-result3e = pd.read_sql_query(query3e, conn)
-columns[2].subheader('')
-columns[2].write(result3e, index=False)
+
+#------------------------------------------------------------------------------------------------------------------------------------------#
+# Adding separation line
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<hr>", unsafe_allow_html=True)
+#------------------------------------------------------------------------------------------------------------------------------------------#
+#
+st.subheader('Most used grapes')
+columns = st.columns(2)
+query5 = load_sql_file('Q5.sql')
+result5 = pd.read_sql_query(query5, conn)
+columns[0].subheader('')
+columns[0].write(result5)
+
+#------------------------------------------------------------------------------------------------------------------------------------------#
+# Adding separation line
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<hr>", unsafe_allow_html=True)
+#------------------------------------------------------------------------------------------------------------------------------------------#
+#
+st.subheader('Question 6')
+columns = st.columns(3)
+
+query61 = load_sql_file('Q6_1.sql')
+result61 = pd.read_sql_query(query61, conn)
+columns[0].subheader('')
+columns[0].write(result61)
+
+query62 = load_sql_file('Q6_2.sql')
+result62 = pd.read_sql_query(query62, conn)
+columns[1].subheader('')
+columns[1].write(result62)
+
+columns[2].subheader('Country Leaderboard')
+
+# Calculate the minimum average rating
+min_avg_rating = result61['avg_rating'].min()
+
+df_min = pd.DataFrame({
+    'country': result61['country'],
+    'min_avg_rating': min_avg_rating,
+})
+
+chart3 = alt.Chart(result61).mark_bar(color='#6d071a').encode(
+    x=alt.X('avg_rating:Q', title='Average rating'),
+    y=alt.Y('country:N', sort=alt.EncodingSortField(field="avg_rating", order='descending'), title='Country')
+)
+
+chart4 = alt.Chart(df_min).mark_bar(color='#b8a9c9').encode(
+    x=alt.X('min_avg_rating:Q'),
+    y=alt.Y('country:N'))
+
+final_chart = alt.layer(chart3, chart4)
+
+columns[2].altair_chart(final_chart, use_container_width=True)
+
+#------------------------------------------------------------------------------------------------------------------------------------------#
+# Adding separation line
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<hr>", unsafe_allow_html=True)
+#------------------------------------------------------------------------------------------------------------------------------------------#
+#
