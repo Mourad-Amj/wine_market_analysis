@@ -14,7 +14,7 @@ def load_sql_file(file_name):
 
 
 st.set_page_config(
-    page_title="Vivino market analysis Dashboard",
+    page_title="Wiwinio market analysis Dashboard",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -24,7 +24,7 @@ st.set_page_config(
 # Center the title horizontally
 container = st.container()
 left_column, center_column, right_column = st.columns(3)
-center_column.title("Vivino market analysis Dashboard 🍇📈")
+center_column.title("Wiwinio market analysis Dashboard 🍇📈")
 
 # ------------------------------------------------------------------------------------------------------------------------------------------#
 # Adding separation line
