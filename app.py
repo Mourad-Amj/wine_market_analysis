@@ -136,6 +136,15 @@ result4 = pd.read_sql_query(query4, conn)
 columns[0].subheader("")
 columns[0].write(result4)
 
+columns[1].markdown(
+    """
+This table presents a selection of wines that align with our customers' preferred flavor profiles, specifically those that encompass the tastes of 'coffee', 'toast', 'green apple', 'cream', and 'citrus'.
+
+Each wine listed in this table has been confirmed by more than 10 users to exhibit these specific taste qualities. 
+   
+This selection process ensures that we are recommending wines that closely match our customers' preferences, enhancing their satisfaction and loyalty.
+"""
+)
 
 # ------------------------------------------------------------------------------------------------------------------------------------------#
 # Adding separation line
@@ -150,6 +159,14 @@ result5 = pd.read_sql_query(query5, conn)
 columns[0].subheader("")
 columns[0].write(result5)
 
+columns[1].markdown(
+    """
+This table showcases the top three most commonly used grapes in wine production worldwide. 
+Each row represents a different grape variety, with the associated count indicating the global prevalence of wines made from this grape. 
+The ranking is based on the total number of wines produced from each grape variety, providing a reliable indication of their global availability.
+Therefore, wines made from these grapes are likely to be found with ease across various regions around the world. 
+"""
+)
 # ------------------------------------------------------------------------------------------------------------------------------------------#
 # Adding separation line
 st.markdown("<hr>", unsafe_allow_html=True)
@@ -157,7 +174,7 @@ st.markdown("<hr>", unsafe_allow_html=True)
 # ------------------------------------------------------------------------------------------------------------------------------------------#
 #
 st.subheader("Country leaderboard")
-columns = st.columns(2)
+columns = st.columns(3)
 
 query61 = load_sql_file("./src/Q6_1.sql")
 result61 = pd.read_sql_query(query61, conn)
@@ -202,6 +219,22 @@ columns[1].write(result62)
 # final_chart = alt.layer(chart3, chart4)
 
 # columns[2].altair_chart(final_chart, use_container_width=True)
+
+columns[2].markdown(
+    """
+
+This first table provides a country-wise leaderboard that illustrates the average wine rating per country.
+Each row in the table corresponds to a country, with its average wine rating calculated from all wines produced in that country.
+The 'number of users' column denotes the total number of users who have rated wines from each respective country. 
+The countries are ranked in descending order based on the average wine rating, making it easy to compare the overall quality of wines produced across different countries.
+
+The second table displays a ranking of countries based on the average ranking of their vintages. 
+Each country is represented by a row, with the corresponding average ranking calculated from all vintages produced in that country. 
+The countries are ranked in ascending order of average ranking, providing an overview of which countries produce the most acclaimed vintages.
+ This data can provide a valuable reference for customers seeking wines from the highest-rated vintages globally.
+"""
+)
+
 
 # ------------------------------------------------------------------------------------------------------------------------------------------#
 # Adding separation line
