@@ -1,4 +1,4 @@
-SELECT id, name, acidity, fizziness, intensity, sweetness, tannin, ratings_average, user_structure_count
+SELECT name AS "wine" , acidity, fizziness, intensity, sweetness, tannin, ratings_average AS "rating", user_structure_count AS "users vote"
 FROM wines
 WHERE name NOT LIKE '%Cabernet Sauvignon%' 
     AND acidity BETWEEN 3 AND 4.3

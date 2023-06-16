@@ -2,7 +2,7 @@
 -- give us a visual that shows the average wine rating for each country.
 -- Do the same for the vintages
 
-SELECT countries.name , AVG(vintage_toplists_rankings.rank) AS avg_ranking
+SELECT countries.name as "country" , AVG(vintage_toplists_rankings.rank) AS "average ranking"
 FROM vintages
 JOIN vintage_toplists_rankings
 ON vintages.id = vintage_toplists_rankings.vintage_id
